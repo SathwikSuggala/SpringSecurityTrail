@@ -1,16 +1,31 @@
 package com.sathwik.applicationTrail.service;
 
+import com.sathwik.applicationTrail.entity.User;
+import com.sathwik.applicationTrail.repository.UserDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-public class UserService extends UserDetailsService {
+@Service
+public class UserService {
+
     @Autowired
+    private UserDetailsRepository repository;
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    public void addUser(User user) {
 
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Check if username already exists
+        if (repository.findByUsername(user.getUserName()).isPresent()) {
+            throw new IllegalArgumentException("User with the same username already exists");
+        }
 
+        // Encrypt the password
+        String encryptedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
+        // Save the user to the repository
+        repository.save(user);
     }
 }
