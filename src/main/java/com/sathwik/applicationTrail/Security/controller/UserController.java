@@ -1,8 +1,7 @@
-package com.sathwik.applicationTrail.controller;
+package com.sathwik.applicationTrail.Security.controller;
 
-import com.sathwik.applicationTrail.entity.User;
-import com.sathwik.applicationTrail.service.MyUserService;
-import com.sathwik.applicationTrail.service.UserService;
+import com.sathwik.applicationTrail.Security.entity.User;
+import com.sathwik.applicationTrail.Security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +21,6 @@ public class UserController {
     @PostMapping("/Hello")
     public String checking(){
 
-        return "Success";
+        return "Hello world";
     }
 }

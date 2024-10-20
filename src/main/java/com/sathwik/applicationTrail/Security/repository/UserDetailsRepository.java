@@ -1,6 +1,6 @@
-package com.sathwik.applicationTrail.repository;
+package com.sathwik.applicationTrail.Security.repository;
 
-import com.sathwik.applicationTrail.entity.User;
+import com.sathwik.applicationTrail.Security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

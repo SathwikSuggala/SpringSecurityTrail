@@ -1,4 +1,4 @@
-package com.sathwik.applicationTrail.service;
+package com.sathwik.applicationTrail.Security.service;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

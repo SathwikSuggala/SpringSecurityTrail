@@ -1,8 +1,8 @@
-package com.sathwik.applicationTrail.entity;
+package com.sathwik.applicationTrail.Security.entity;
 
-import com.sathwik.applicationTrail.dto.Gender;
-import com.sathwik.applicationTrail.dto.Role;
-import com.sathwik.applicationTrail.dto.AccountStatus;
+import com.sathwik.applicationTrail.Security.dto.Gender;
+import com.sathwik.applicationTrail.Security.dto.Role;
+import com.sathwik.applicationTrail.Security.dto.AccountStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

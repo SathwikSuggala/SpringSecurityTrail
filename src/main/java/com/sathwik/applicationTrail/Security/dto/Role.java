@@ -1,4 +1,4 @@
-package com.sathwik.applicationTrail.dto;
+package com.sathwik.applicationTrail.Security.dto;
 
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.sathwik.applicationTrail.configuration;
+package com.sathwik.applicationTrail.Security.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,7 +21,6 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     @Autowired
-    @Lazy
     public UserDetailsService userDetailsService;
 
     @Bean
@@ -38,17 +38,18 @@ public class SecurityConfiguration {
         http.csrf(customizer ->customizer.disable())  // Ensure CSRF is disabled
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/login", "/register").permitAll()  // Allow access to /register
-                        .anyRequest().authenticated())  // Secure other routes
+                        .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())// Secure other routes
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }
 
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-
-        return configuration.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+//
+//        return configuration.getAuthenticationManager();
+//    }
 
 }
