@@ -1,16 +1,14 @@
 package com.sathwik.applicationTrail.Security.repository;
 
 import com.sathwik.applicationTrail.Security.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserDetailsRepository extends JpaRepository<User, Integer> {
-    @Query("select u from User u where u.userName = :userName")
-    Optional<User> findByUsername(@Param("userName") String userName);
-
+public interface UserDetailsRepository extends MongoRepository<User, String> {
+    @Query("{ 'userName' : ?0 }")  // MongoDB query syntax, ?0 refers to the first method parameter
+    Optional<User> findByUsername(String userName);
 }
